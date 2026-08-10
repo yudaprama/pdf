@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 )
 
 // TestExtract tests the extraction of the image.Rectangle from the source bitmap

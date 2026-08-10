@@ -38,10 +38,10 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/internal/cmap"
-	"github.com/yudaprama/tools/pdf/internal/textencoding"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/internal/cmap"
+	"github.com/yudaprama/pdf/internal/textencoding"
 )
 
 // MakeEncoder returns an encoder built from the tables in `rec`.

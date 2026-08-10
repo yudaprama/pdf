@@ -13,7 +13,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/bitmap"
+	"github.com/yudaprama/pdf/internal/jbig2/bitmap"
 )
 
 // TestImageToJBIG2Image tests conversion of image.Image to JBIG2Image

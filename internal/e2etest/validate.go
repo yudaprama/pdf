@@ -13,7 +13,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 )
 
 // To enable ghostscript validation, the path to the binary needs to be specified.

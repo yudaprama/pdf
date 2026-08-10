@@ -3,9 +3,9 @@ package draw
 import (
 	"math"
 
-	pdfcontent "github.com/yudaprama/tools/pdf/contentstream"
-	pdfcore "github.com/yudaprama/tools/pdf/core"
-	pdf "github.com/yudaprama/tools/pdf/model"
+	pdfcontent "github.com/yudaprama/pdf/contentstream"
+	pdfcore "github.com/yudaprama/pdf/core"
+	pdf "github.com/yudaprama/pdf/model"
 )
 
 // Circle represents a circle shape with fill and border properties that can be drawn to a PDF content stream.

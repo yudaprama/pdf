@@ -4,7 +4,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/yudaprama/tools/pdf/internal/textencoding"
+	"github.com/yudaprama/pdf/internal/textencoding"
 )
 
 const fontDir = `../../../creator/testdata`

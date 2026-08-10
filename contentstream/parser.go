@@ -14,8 +14,8 @@ import (
 	"io"
 	"strconv"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
 )
 
 // ContentStreamParser represents a content stream parser for parsing content streams in PDFs.

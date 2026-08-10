@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/core"
 )
 
 // IdentityEncoder represents an 2-byte identity encoding.

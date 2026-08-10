@@ -27,14 +27,14 @@ import (
 	"github.com/boombuler/barcode/qr"
 	"github.com/stretchr/testify/require"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/contentstream/draw"
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/extractor"
-	"github.com/yudaprama/tools/pdf/model"
-	"github.com/yudaprama/tools/pdf/model/optimize"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/contentstream/draw"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/extractor"
+	"github.com/yudaprama/pdf/model"
+	"github.com/yudaprama/pdf/model/optimize"
 
-	"github.com/yudaprama/tools/pdf/internal/testutils"
+	"github.com/yudaprama/pdf/internal/testutils"
 )
 
 func init() {

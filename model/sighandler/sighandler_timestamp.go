@@ -20,8 +20,8 @@ import (
 
 	"github.com/unidoc/pkcs7"
 	"github.com/unidoc/timestamp"
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/model"
 )
 
 // docTimeStamp DocTimeStamp signature handler.

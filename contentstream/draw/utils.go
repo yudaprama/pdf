@@ -1,7 +1,7 @@
 package draw
 
 import (
-	pdfcontent "github.com/yudaprama/tools/pdf/contentstream"
+	pdfcontent "github.com/yudaprama/pdf/contentstream"
 )
 
 // DrawPathWithCreator makes the path with the content creator.

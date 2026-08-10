@@ -10,7 +10,7 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/model"
 )
 
 // textLine repesents words on the same line within a textPara.

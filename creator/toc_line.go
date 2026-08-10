@@ -8,7 +8,7 @@ package creator
 import (
 	"strings"
 
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/model"
 )
 
 // TOCLine represents a line in a table of contents.

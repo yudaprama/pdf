@@ -33,9 +33,9 @@ import (
 
 	lzw1 "golang.org/x/image/tiff/lzw"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 
-	"github.com/yudaprama/tools/pdf/internal/ccittfax"
+	"github.com/yudaprama/pdf/internal/ccittfax"
 )
 
 // Stream encoding filter names.

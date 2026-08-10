@@ -6,9 +6,9 @@
 package segments
 
 import (
-	"github.com/yudaprama/tools/pdf/internal/jbig2/bitmap"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/reader"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/writer"
+	"github.com/yudaprama/pdf/internal/jbig2/bitmap"
+	"github.com/yudaprama/pdf/internal/jbig2/reader"
+	"github.com/yudaprama/pdf/internal/jbig2/writer"
 )
 
 // Documenter is the interface used for the document model.

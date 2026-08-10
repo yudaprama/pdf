@@ -10,9 +10,9 @@ import (
 	"image/color"
 	"math"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/internal/transform"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/internal/transform"
+	"github.com/yudaprama/pdf/model"
 )
 
 // textMark represents text drawn on a page and its position in device coordinates.

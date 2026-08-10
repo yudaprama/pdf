@@ -8,7 +8,7 @@ package draw
 import (
 	"fmt"
 
-	"github.com/yudaprama/tools/pdf/internal/transform"
+	"github.com/yudaprama/pdf/internal/transform"
 )
 
 // Point represents a two-dimensional point.

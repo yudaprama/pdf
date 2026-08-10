@@ -12,7 +12,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/core"
 )
 
 func TestReaderLazy(t *testing.T) {

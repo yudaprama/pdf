@@ -8,8 +8,8 @@ package textencoding
 import (
 	"bytes"
 
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/internal/cmap"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/internal/cmap"
 )
 
 // CMapEncoder encodes/decodes strings based on CMap mappings.

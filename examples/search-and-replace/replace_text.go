@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/yudaprama/tools/pdf/extractor"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/extractor"
+	"github.com/yudaprama/pdf/model"
 )
 
 func main() {

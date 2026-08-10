@@ -6,9 +6,9 @@
 package bitmap
 
 import (
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/errors"
+	"github.com/yudaprama/pdf/internal/jbig2/errors"
 )
 
 // RasterOperator is the raster operation flag operator.

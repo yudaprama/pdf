@@ -1,4 +1,4 @@
-module github.com/yudaprama/tools/pdf
+module github.com/yudaprama/pdf
 
 go 1.26.4
 

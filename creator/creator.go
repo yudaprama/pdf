@@ -12,9 +12,9 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/model"
 )
 
 // Creator is a wrapper around functionality for creating PDF reports and/or adding new

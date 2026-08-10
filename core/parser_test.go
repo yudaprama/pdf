@@ -16,7 +16,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 )
 
 func makeReaderForText(txt string) (*bytes.Reader, *bufio.Reader, int64) {

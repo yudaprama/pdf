@@ -10,9 +10,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/internal/cmap/bcmaps"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/internal/cmap/bcmaps"
 )
 
 const (

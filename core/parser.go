@@ -18,8 +18,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core/security"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core/security"
 )
 
 // Regular Expressions for parsing and identifying object signatures.

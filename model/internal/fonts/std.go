@@ -6,8 +6,8 @@
 package fonts
 
 import (
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/internal/textencoding"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/internal/textencoding"
 )
 
 // StdFontName is a name of a standard font.

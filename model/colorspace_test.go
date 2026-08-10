@@ -11,8 +11,8 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/internal/testutils"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/internal/testutils"
 )
 
 func TestSeparationCS1(t *testing.T) {

@@ -6,8 +6,8 @@
 package creator
 
 import (
-	"github.com/yudaprama/tools/pdf/contentstream/draw"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/contentstream/draw"
+	"github.com/yudaprama/pdf/model"
 )
 
 // Rectangle defines a rectangle with upper left corner at (x,y) and a specified width and height.  The rectangle

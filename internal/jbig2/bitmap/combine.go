@@ -8,7 +8,7 @@ package bitmap
 import (
 	"image"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 )
 
 // CombineBytes combines the provided bytes with respect to the CombinationOperator.

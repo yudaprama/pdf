@@ -8,7 +8,7 @@ package optimize
 import (
 	"crypto/md5"
 
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/core"
 )
 
 // CombineDuplicateStreams combines duplicated streams by its data hash.

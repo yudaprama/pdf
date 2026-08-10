@@ -12,7 +12,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 )
 
 // xrefType indicates the type of a cross-references entry which can be either regular table entry or xref object

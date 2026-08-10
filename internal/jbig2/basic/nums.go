@@ -6,7 +6,7 @@
 package basic
 
 import (
-	"github.com/yudaprama/tools/pdf/internal/jbig2/errors"
+	"github.com/yudaprama/pdf/internal/jbig2/errors"
 )
 
 // IntSlice is the integer slice that contains panic safe methods.

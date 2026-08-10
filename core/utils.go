@@ -15,7 +15,7 @@ import (
 	"sort"
 	"strconv"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 )
 
 // Check slice range to make sure within bounds for accessing:

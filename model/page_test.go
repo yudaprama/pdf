@@ -9,8 +9,8 @@ import (
 	"io"
 	"testing"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
 )
 
 // ParseIndObjSeries loads a series of indirect objects until it runs into an error or EOF.

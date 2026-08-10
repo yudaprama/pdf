@@ -7,8 +7,8 @@ package model
 
 import (
 	"fmt"
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
 )
 
 // PdfActionType represents an action type in PDF (section 12.6.4 p. 417).

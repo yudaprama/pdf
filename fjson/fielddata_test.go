@@ -14,7 +14,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/model"
 )
 
 func TestLoadPDFFormData(t *testing.T) {

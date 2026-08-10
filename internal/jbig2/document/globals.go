@@ -6,8 +6,8 @@
 package document
 
 import (
-	"github.com/yudaprama/tools/pdf/internal/jbig2/document/segments"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/errors"
+	"github.com/yudaprama/pdf/internal/jbig2/document/segments"
+	"github.com/yudaprama/pdf/internal/jbig2/errors"
 )
 
 // Globals store segments that aren't associated to a page.

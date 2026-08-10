@@ -16,7 +16,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/core"
 )
 
 // PdfRectangle is a definition of a rectangle.

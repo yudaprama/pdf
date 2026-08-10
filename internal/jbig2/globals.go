@@ -3,8 +3,8 @@ package jbig2
 import (
 	"sort"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/document"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/document/segments"
+	"github.com/yudaprama/pdf/internal/jbig2/document"
+	"github.com/yudaprama/pdf/internal/jbig2/document/segments"
 )
 
 // Globals is the v3 mapping of the jbig2 segments to header mapping.

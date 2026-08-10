@@ -8,7 +8,7 @@ package draw
 import (
 	"math"
 
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/model"
 )
 
 // CubicBezierCurve is defined by:

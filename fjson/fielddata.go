@@ -10,8 +10,8 @@ import (
 	"io"
 	"os"
 
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/model"
 )
 
 // FieldData represents form field data loaded from JSON file.

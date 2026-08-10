@@ -9,10 +9,10 @@ import (
 	"image"
 	"math"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/bitmap"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/errors"
+	"github.com/yudaprama/pdf/internal/jbig2/bitmap"
+	"github.com/yudaprama/pdf/internal/jbig2/errors"
 )
 
 var debugCorrelationScore bool

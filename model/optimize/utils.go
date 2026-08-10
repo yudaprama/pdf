@@ -8,7 +8,7 @@ package optimize
 import (
 	"bytes"
 
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/core"
 )
 
 type objectStructure struct {

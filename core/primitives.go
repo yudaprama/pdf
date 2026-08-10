@@ -13,8 +13,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/internal/strutils"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/internal/strutils"
 )
 
 // PdfObject is an interface which all primitive PDF objects must implement.

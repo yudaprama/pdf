@@ -9,9 +9,9 @@ import (
 	"bytes"
 	"errors"
 
-	"github.com/yudaprama/tools/pdf/contentstream"
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/contentstream"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/model"
 )
 
 // TextFieldOptions defines optional parameter for a text field in a form.

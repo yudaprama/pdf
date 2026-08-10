@@ -8,8 +8,8 @@ package creator
 import (
 	"os"
 
-	"github.com/yudaprama/tools/pdf/contentstream/draw"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/contentstream/draw"
+	"github.com/yudaprama/pdf/model"
 )
 
 // Loads the template from path as a list of pages.

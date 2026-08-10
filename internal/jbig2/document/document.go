@@ -10,14 +10,14 @@ import (
 	"io"
 	"runtime/debug"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/bitmap"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/document/segments"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/encoder/classer"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/errors"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/reader"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/writer"
+	"github.com/yudaprama/pdf/internal/jbig2/bitmap"
+	"github.com/yudaprama/pdf/internal/jbig2/document/segments"
+	"github.com/yudaprama/pdf/internal/jbig2/encoder/classer"
+	"github.com/yudaprama/pdf/internal/jbig2/errors"
+	"github.com/yudaprama/pdf/internal/jbig2/reader"
+	"github.com/yudaprama/pdf/internal/jbig2/writer"
 )
 
 // fileHeaderID first byte slices of the jbig2 encoded file, see D.4.1.

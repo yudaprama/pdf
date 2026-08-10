@@ -11,9 +11,9 @@ import (
 	"io"
 	"strings"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/core/security"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/core/security"
 )
 
 // PdfReader represents a PDF file reader. It is a frontend to the lower level parsing mechanism and provides

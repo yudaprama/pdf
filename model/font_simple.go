@@ -13,11 +13,11 @@ import (
 	"os"
 	"strings"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
 
-	"github.com/yudaprama/tools/pdf/internal/textencoding"
-	"github.com/yudaprama/tools/pdf/model/internal/fonts"
+	"github.com/yudaprama/pdf/internal/textencoding"
+	"github.com/yudaprama/pdf/model/internal/fonts"
 )
 
 // pdfFontSimple implements pdfFont

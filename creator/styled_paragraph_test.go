@@ -9,7 +9,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/model"
 )
 
 func TestParagraphRegularVsStyled(t *testing.T) {

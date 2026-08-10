@@ -9,7 +9,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/core"
 )
 
 // Errors when parsing/loading data in PDF.

@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
 )
 
 // FromFontDifferences converts `diffList` (a /Differences array from an /Encoding object) to a map

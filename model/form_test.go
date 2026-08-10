@@ -11,8 +11,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/internal/testutils"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/internal/testutils"
 )
 
 // Test loading of a basic checkbox field with a merged-in annotation.

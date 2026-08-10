@@ -14,13 +14,13 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/model"
 
-	"github.com/yudaprama/tools/pdf/internal/testutils"
-	"github.com/yudaprama/tools/pdf/internal/textencoding"
-	"github.com/yudaprama/tools/pdf/model/internal/fonts"
+	"github.com/yudaprama/pdf/internal/testutils"
+	"github.com/yudaprama/pdf/internal/textencoding"
+	"github.com/yudaprama/pdf/model/internal/fonts"
 )
 
 func init() {

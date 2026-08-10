@@ -12,8 +12,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/yudaprama/tools/pdf/common"
-	pdfcore "github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/common"
+	pdfcore "github.com/yudaprama/pdf/core"
 )
 
 // PSParser is a basic Postscript parser.

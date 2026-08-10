@@ -6,8 +6,8 @@
 package textencoding
 
 import (
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/internal/strutils"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/internal/strutils"
 )
 
 // UTF16Encoder represents UTF-16 encoding.

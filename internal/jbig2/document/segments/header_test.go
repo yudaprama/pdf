@@ -12,8 +12,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/reader"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/writer"
+	"github.com/yudaprama/pdf/internal/jbig2/reader"
+	"github.com/yudaprama/pdf/internal/jbig2/writer"
 )
 
 // TestDecodeHeader test the segment header model decode process.

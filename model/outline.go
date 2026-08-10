@@ -9,8 +9,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
 )
 
 // OutlineDest represents the destination of an outline item.

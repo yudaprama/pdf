@@ -9,10 +9,10 @@ import (
 	"errors"
 	"math"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/internal/sampling"
-	"github.com/yudaprama/tools/pdf/ps"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/internal/sampling"
+	"github.com/yudaprama/pdf/ps"
 )
 
 // PdfFunction interface represents the common methods of a function in PDF.

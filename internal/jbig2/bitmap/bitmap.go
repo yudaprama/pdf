@@ -10,11 +10,11 @@ import (
 	"image/color"
 	"math"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/errors"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/reader"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/writer"
+	"github.com/yudaprama/pdf/internal/jbig2/errors"
+	"github.com/yudaprama/pdf/internal/jbig2/reader"
+	"github.com/yudaprama/pdf/internal/jbig2/writer"
 )
 
 // tab8 contains number of '1' bits in each possible 8 bit value stored at it's index.

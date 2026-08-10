@@ -11,8 +11,8 @@ import (
 	"io"
 	"time"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
 )
 
 // Hasher is the interface that wraps the basic Write method.

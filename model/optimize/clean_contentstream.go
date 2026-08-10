@@ -6,8 +6,8 @@
 package optimize
 
 import (
-	"github.com/yudaprama/tools/pdf/contentstream"
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/contentstream"
+	"github.com/yudaprama/pdf/core"
 )
 
 // CleanContentstream cleans up redundant operands in content streams, including Page and XObject Form

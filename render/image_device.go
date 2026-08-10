@@ -16,8 +16,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/yudaprama/tools/pdf/model"
-	"github.com/yudaprama/tools/pdf/render/internal/context/imagerender"
+	"github.com/yudaprama/pdf/model"
+	"github.com/yudaprama/pdf/render/internal/context/imagerender"
 )
 
 // ImageDevice is used to render PDF pages to image targets.

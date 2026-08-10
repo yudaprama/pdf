@@ -8,7 +8,7 @@ package model
 import (
 	"testing"
 
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/core"
 )
 
 // Test for an endless recursive loop in

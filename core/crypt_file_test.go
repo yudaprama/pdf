@@ -12,9 +12,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	pdfcontent "github.com/yudaprama/tools/pdf/contentstream"
-	"github.com/yudaprama/tools/pdf/core"
-	pdf "github.com/yudaprama/tools/pdf/model"
+	pdfcontent "github.com/yudaprama/pdf/contentstream"
+	"github.com/yudaprama/pdf/core"
+	pdf "github.com/yudaprama/pdf/model"
 )
 
 const aes3Dir = `./testdata`

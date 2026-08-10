@@ -11,8 +11,8 @@ import (
 	"image/color"
 	"math"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
 )
 
 // PdfColorspace interface defines the common methods of a PDF colorspace.

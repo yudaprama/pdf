@@ -6,9 +6,9 @@
 package bitmap
 
 import (
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/errors"
+	"github.com/yudaprama/pdf/internal/jbig2/errors"
 )
 
 // BoundaryCondition is the global enum variable used to define morph operation boundary conditions.

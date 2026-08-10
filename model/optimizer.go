@@ -6,7 +6,7 @@
 package model
 
 import (
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/core"
 )
 
 // Optimizer is the interface that performs optimization of PDF object structure for output writing.

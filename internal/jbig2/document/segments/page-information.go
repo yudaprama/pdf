@@ -11,12 +11,12 @@ import (
 	"math"
 	"strings"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/bitmap"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/errors"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/reader"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/writer"
+	"github.com/yudaprama/pdf/internal/jbig2/bitmap"
+	"github.com/yudaprama/pdf/internal/jbig2/errors"
+	"github.com/yudaprama/pdf/internal/jbig2/reader"
+	"github.com/yudaprama/pdf/internal/jbig2/writer"
 )
 
 // PageInformationSegment represents the segment type Page Information 7.4.8.

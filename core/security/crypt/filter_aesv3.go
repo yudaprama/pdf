@@ -12,7 +12,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 )
 
 func init() {

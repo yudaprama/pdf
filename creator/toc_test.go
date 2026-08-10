@@ -7,7 +7,7 @@ package creator
 import (
 	"testing"
 
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/model"
 )
 
 func TestTOCAdvanced(t *testing.T) {

@@ -8,8 +8,8 @@ package model
 import (
 	"fmt"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
 )
 
 // PdfOutlineTreeNode contains common fields used by the outline and outline

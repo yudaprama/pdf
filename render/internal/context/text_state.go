@@ -6,7 +6,7 @@
 package context
 
 import (
-	"github.com/yudaprama/tools/pdf/internal/transform"
+	"github.com/yudaprama/pdf/internal/transform"
 )
 
 // TextState holds a representation of a PDF text state. The text state

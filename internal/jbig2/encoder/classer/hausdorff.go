@@ -6,11 +6,11 @@
 package classer
 
 import (
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/basic"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/bitmap"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/errors"
+	"github.com/yudaprama/pdf/internal/jbig2/basic"
+	"github.com/yudaprama/pdf/internal/jbig2/bitmap"
+	"github.com/yudaprama/pdf/internal/jbig2/errors"
 )
 
 // classifyRankHaus is the classification using windowed rank hausdorff metric.

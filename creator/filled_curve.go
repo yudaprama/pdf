@@ -6,10 +6,10 @@
 package creator
 
 import (
-	pdfcontent "github.com/yudaprama/tools/pdf/contentstream"
-	"github.com/yudaprama/tools/pdf/contentstream/draw"
-	pdfcore "github.com/yudaprama/tools/pdf/core"
-	pdf "github.com/yudaprama/tools/pdf/model"
+	pdfcontent "github.com/yudaprama/pdf/contentstream"
+	"github.com/yudaprama/pdf/contentstream/draw"
+	pdfcore "github.com/yudaprama/pdf/core"
+	pdf "github.com/yudaprama/pdf/model"
 )
 
 // FilledCurve represents a closed path of Bezier curves with a border and fill.

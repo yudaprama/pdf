@@ -18,7 +18,7 @@ import (
 	"io"
 	"math"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 )
 
 var _ StdHandler = stdHandlerR6{}

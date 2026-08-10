@@ -10,7 +10,7 @@ import (
 	"errors"
 	"io"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 )
 
 // readAtLeast reads at least n bytes into slice p.

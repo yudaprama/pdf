@@ -10,7 +10,7 @@ import (
 	"errors"
 	"io"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 )
 
 // Reader is the bit reader implementation.

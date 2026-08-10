@@ -8,7 +8,7 @@ package crypt
 import (
 	"fmt"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 )
 
 func init() {

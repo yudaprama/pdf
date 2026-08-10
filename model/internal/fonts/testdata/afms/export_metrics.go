@@ -17,9 +17,9 @@ import (
 
 	"flag"
 
-	pdfcommon "github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/internal/fonts"
-	"github.com/yudaprama/tools/pdf/model"
+	pdfcommon "github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/internal/fonts"
+	"github.com/yudaprama/pdf/model"
 )
 
 func main() {

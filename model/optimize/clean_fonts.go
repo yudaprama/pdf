@@ -11,11 +11,11 @@ import (
 
 	"github.com/unidoc/unitype"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/extractor"
-	"github.com/yudaprama/tools/pdf/internal/textencoding"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/extractor"
+	"github.com/yudaprama/pdf/internal/textencoding"
+	"github.com/yudaprama/pdf/model"
 )
 
 // CleanFonts cleans up embedded fonts, reducing font sizes.

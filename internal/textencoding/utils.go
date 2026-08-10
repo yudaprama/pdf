@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"unicode"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 )
 
 func glyphToRune(glyph GlyphName, glyphToRuneMap map[GlyphName]rune) (rune, bool) {

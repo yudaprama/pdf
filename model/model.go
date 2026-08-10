@@ -6,7 +6,7 @@
 package model
 
 import (
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/core"
 )
 
 // PdfModel is a higher level PDF construct which can be collapsed into a PdfObject.

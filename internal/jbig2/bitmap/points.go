@@ -8,8 +8,8 @@ package bitmap
 import (
 	"sort"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/basic"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/errors"
+	"github.com/yudaprama/pdf/internal/jbig2/basic"
+	"github.com/yudaprama/pdf/internal/jbig2/errors"
 )
 
 // Point is the basic structure that contains x, y float32 values.

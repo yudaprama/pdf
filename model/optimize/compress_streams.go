@@ -6,7 +6,7 @@
 package optimize
 
 import (
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/core"
 )
 
 // CompressStreams compresses uncompressed streams.

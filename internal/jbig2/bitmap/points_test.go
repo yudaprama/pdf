@@ -11,7 +11,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/basic"
+	"github.com/yudaprama/pdf/internal/jbig2/basic"
 )
 
 func TestClassedPoints_GroupByY(t *testing.T) {

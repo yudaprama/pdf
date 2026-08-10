@@ -10,8 +10,8 @@ import (
 	"errors"
 	"io"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
 )
 
 // ParseIndirectObjects parses a sequence of indirect/stream objects sequentially from a `rawpdf` text.

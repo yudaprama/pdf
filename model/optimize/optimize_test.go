@@ -11,8 +11,8 @@ import (
 	"io"
 	"testing"
 
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/model/optimize"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/model/optimize"
 )
 
 // parseIndirectObjects parses a sequence of indirect/stream objects sequentially from a `rawpdf` text.

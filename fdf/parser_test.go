@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/core"
 )
 
 const fdfExample1 = `

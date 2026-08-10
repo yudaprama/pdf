@@ -8,7 +8,7 @@ package optimize
 import (
 	"crypto/md5"
 
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/core"
 )
 
 // CombineDuplicateDirectObjects combines duplicated direct objects by its data hash.

@@ -12,8 +12,8 @@ import (
 	gocolor "image/color"
 	"image/jpeg"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
 )
 
 // Creates the encoder for the inline image's Filter and DecodeParms.

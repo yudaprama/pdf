@@ -10,9 +10,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/basic"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/errors"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/internal/jbig2/basic"
+	"github.com/yudaprama/pdf/internal/jbig2/errors"
 )
 
 // Bitmaps is the structure that contains slice of the bitmaps and the bounding boxes.

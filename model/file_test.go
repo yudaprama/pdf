@@ -7,7 +7,7 @@ package model
 
 import (
 	"github.com/stretchr/testify/require"
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/core"
 	"strings"
 	"testing"
 )

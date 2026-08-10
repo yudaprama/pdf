@@ -11,7 +11,7 @@ import (
 	"os"
 	"sort"
 
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/core"
 )
 
 // Data represents forms data format (FDF) file data.

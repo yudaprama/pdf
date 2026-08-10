@@ -9,10 +9,10 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/bitmap"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/reader"
+	"github.com/yudaprama/pdf/internal/jbig2/bitmap"
+	"github.com/yudaprama/pdf/internal/jbig2/reader"
 )
 
 // HalftoneRegion is the model for the jbig2 halftone region segment implementation - 7.4.5.1.

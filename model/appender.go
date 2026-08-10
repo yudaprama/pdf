@@ -14,8 +14,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
 )
 
 // PdfAppender appends new PDF content to an existing PDF document via incremental updates.

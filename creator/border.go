@@ -1,8 +1,8 @@
 package creator
 
 import (
-	"github.com/yudaprama/tools/pdf/contentstream/draw"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/contentstream/draw"
+	"github.com/yudaprama/pdf/model"
 )
 
 // border represents cell border.

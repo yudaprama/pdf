@@ -8,7 +8,7 @@ package cmap
 import (
 	"unicode/utf16"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 )
 
 // hexToCharCode returns the integer that is encoded in `shex` as a big-endian hex value

@@ -16,8 +16,8 @@ import (
 	"golang.org/x/image/font"
 	"golang.org/x/image/math/f64"
 
-	"github.com/yudaprama/tools/pdf/internal/transform"
-	"github.com/yudaprama/tools/pdf/render/internal/context"
+	"github.com/yudaprama/pdf/internal/transform"
+	"github.com/yudaprama/pdf/render/internal/context"
 )
 
 var (

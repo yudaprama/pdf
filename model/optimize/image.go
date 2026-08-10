@@ -6,9 +6,9 @@
 package optimize
 
 import (
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/model"
 )
 
 // Image optimizes images by rewrite images into JPEG format with quality equals to ImageQuality.

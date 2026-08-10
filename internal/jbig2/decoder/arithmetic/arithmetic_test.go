@@ -10,9 +10,9 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/reader"
+	"github.com/yudaprama/pdf/internal/jbig2/reader"
 )
 
 // TestArithmeticDecoder tests the arithmetic decoder with the Apendix A methods.

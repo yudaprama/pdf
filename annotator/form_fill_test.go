@@ -14,12 +14,12 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/fdf"
-	"github.com/yudaprama/tools/pdf/fjson"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/fdf"
+	"github.com/yudaprama/pdf/fjson"
+	"github.com/yudaprama/pdf/model"
 
-	"github.com/yudaprama/tools/pdf/internal/testutils"
+	"github.com/yudaprama/pdf/internal/testutils"
 )
 
 func init() {

@@ -11,11 +11,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/bitmap"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/decoder/arithmetic"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/reader"
+	"github.com/yudaprama/pdf/internal/jbig2/bitmap"
+	"github.com/yudaprama/pdf/internal/jbig2/decoder/arithmetic"
+	"github.com/yudaprama/pdf/internal/jbig2/reader"
 )
 
 // GenericRefinementRegion represtents jbig2 generic refinement region segment - 7.4.7.

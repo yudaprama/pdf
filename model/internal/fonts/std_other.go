@@ -10,7 +10,7 @@
 package fonts
 
 import (
-	"github.com/yudaprama/tools/pdf/internal/textencoding"
+	"github.com/yudaprama/pdf/internal/textencoding"
 )
 
 func init() {

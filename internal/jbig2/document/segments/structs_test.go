@@ -6,8 +6,8 @@
 package segments
 
 import (
-	"github.com/yudaprama/tools/pdf/internal/jbig2/bitmap"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/errors"
+	"github.com/yudaprama/pdf/internal/jbig2/bitmap"
+	"github.com/yudaprama/pdf/internal/jbig2/errors"
 )
 
 // document is a testing structure that implements Documenter interface.

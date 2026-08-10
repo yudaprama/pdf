@@ -19,10 +19,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/core/security"
-	"github.com/yudaprama/tools/pdf/core/security/crypt"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/core/security"
+	"github.com/yudaprama/pdf/core/security/crypt"
 )
 
 var pdfAuthor = ""

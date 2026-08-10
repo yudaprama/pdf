@@ -11,7 +11,7 @@ import (
 
 	"github.com/golang/freetype/raster"
 
-	"github.com/yudaprama/tools/pdf/render/internal/context"
+	"github.com/yudaprama/pdf/render/internal/context"
 )
 
 type repeatOp int

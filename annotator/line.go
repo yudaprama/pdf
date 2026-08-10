@@ -6,10 +6,10 @@
 package annotator
 
 import (
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/contentstream/draw"
-	pdfcore "github.com/yudaprama/tools/pdf/core"
-	pdf "github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/contentstream/draw"
+	pdfcore "github.com/yudaprama/pdf/core"
+	pdf "github.com/yudaprama/pdf/model"
 )
 
 // LineAnnotationDef defines a line between point 1 (X1,Y1) and point 2 (X2,Y2).  The line ending styles can be none

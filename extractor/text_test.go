@@ -21,9 +21,9 @@ import (
 	"testing"
 	"unicode/utf8"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/creator"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/creator"
+	"github.com/yudaprama/pdf/model"
 	"golang.org/x/text/unicode/norm"
 )
 

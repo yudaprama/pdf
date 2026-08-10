@@ -6,7 +6,7 @@
 package huffman
 
 import (
-	"github.com/yudaprama/tools/pdf/internal/jbig2/reader"
+	"github.com/yudaprama/pdf/internal/jbig2/reader"
 )
 
 // Compile time check for the encoded table.

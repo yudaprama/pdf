@@ -8,7 +8,7 @@ package segments
 import (
 	"math"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/reader"
+	"github.com/yudaprama/pdf/internal/jbig2/reader"
 )
 
 // EndOfStripe flags an end of stripe - see 7.4.9.

@@ -10,7 +10,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 )
 
 // parse parses the CMap file and loads into the CMap structure.

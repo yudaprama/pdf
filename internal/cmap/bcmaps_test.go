@@ -9,7 +9,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	"github.com/yudaprama/tools/pdf/internal/cmap/bcmaps"
+	"github.com/yudaprama/pdf/internal/cmap/bcmaps"
 )
 
 func TestIsPredefinedCMap(t *testing.T) {

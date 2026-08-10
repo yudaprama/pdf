@@ -8,7 +8,7 @@ package security
 import (
 	"crypto/cipher"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 )
 
 // ecb implements an Electronic Codebook encryption mode.

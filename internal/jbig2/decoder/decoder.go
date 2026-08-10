@@ -8,10 +8,10 @@ package decoder
 import (
 	"image"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/bitmap"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/document"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/errors"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/reader"
+	"github.com/yudaprama/pdf/internal/jbig2/bitmap"
+	"github.com/yudaprama/pdf/internal/jbig2/document"
+	"github.com/yudaprama/pdf/internal/jbig2/errors"
+	"github.com/yudaprama/pdf/internal/jbig2/reader"
 )
 
 // Decoder is the structure used to decode JBIG2 encoded byte streams.

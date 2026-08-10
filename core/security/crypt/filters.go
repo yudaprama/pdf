@@ -8,7 +8,7 @@ package crypt
 import (
 	"fmt"
 
-	"github.com/yudaprama/tools/pdf/core/security"
+	"github.com/yudaprama/pdf/core/security"
 )
 
 var (

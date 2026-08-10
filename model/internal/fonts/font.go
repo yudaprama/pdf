@@ -8,7 +8,7 @@ package fonts
 import (
 	"fmt"
 
-	"github.com/yudaprama/tools/pdf/internal/textencoding"
+	"github.com/yudaprama/pdf/internal/textencoding"
 )
 
 // Font represents a font which is a series of glyphs. Character codes from PDF strings can be

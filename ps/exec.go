@@ -8,7 +8,7 @@
 package ps
 
 import (
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 )
 
 // PSExecutor has its own execution stack and is used to executre a PS routine (program).

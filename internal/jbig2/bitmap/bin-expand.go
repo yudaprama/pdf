@@ -6,7 +6,7 @@
 package bitmap
 
 import (
-	"github.com/yudaprama/tools/pdf/internal/jbig2/errors"
+	"github.com/yudaprama/pdf/internal/jbig2/errors"
 )
 
 func expandBinaryFactor2(d, s *Bitmap) (err error) {

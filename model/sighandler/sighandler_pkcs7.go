@@ -14,8 +14,8 @@ import (
 
 	"github.com/unidoc/pkcs7"
 
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/model"
 )
 
 // Adobe PKCS7 detached signature handler.

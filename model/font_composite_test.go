@@ -4,8 +4,8 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/model/internal/fonts"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/model/internal/fonts"
 )
 
 func TestCIDWidthArr(t *testing.T) {

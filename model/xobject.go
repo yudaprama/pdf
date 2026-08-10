@@ -8,8 +8,8 @@ package model
 import (
 	"errors"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
 )
 
 // XObjectForm (Table 95 in 8.10.2).

@@ -8,10 +8,10 @@ package bitmap
 import (
 	"image"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/basic"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/errors"
+	"github.com/yudaprama/pdf/internal/jbig2/basic"
+	"github.com/yudaprama/pdf/internal/jbig2/errors"
 )
 
 // Component is the component definition enum.

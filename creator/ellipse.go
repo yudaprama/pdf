@@ -6,8 +6,8 @@
 package creator
 
 import (
-	"github.com/yudaprama/tools/pdf/contentstream/draw"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/contentstream/draw"
+	"github.com/yudaprama/pdf/model"
 )
 
 // Ellipse defines an ellipse with a center at (xc,yc) and a specified width and height.  The ellipse can have a colored

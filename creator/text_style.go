@@ -6,7 +6,7 @@
 package creator
 
 import (
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/model"
 )
 
 // TextStyle is a collection of properties that can be assigned to a chunk of text.

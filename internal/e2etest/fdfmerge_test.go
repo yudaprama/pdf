@@ -14,9 +14,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/yudaprama/tools/pdf/annotator"
-	"github.com/yudaprama/tools/pdf/fdf"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/annotator"
+	"github.com/yudaprama/pdf/fdf"
+	"github.com/yudaprama/pdf/model"
 )
 
 // FDF merge tests merge FDF data into template PDF data and flattens to an output PDF file.

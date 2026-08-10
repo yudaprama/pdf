@@ -9,7 +9,7 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/core"
 )
 
 // ContentStreamOperation represents an operation in PDF contentstream which consists of

@@ -12,8 +12,8 @@ import (
 	"math"
 	"sort"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/model"
 )
 
 // paraList is a sequence of textPara. We use it so often that it is convenient to have its own

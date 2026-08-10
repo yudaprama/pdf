@@ -8,7 +8,7 @@ package huffman
 import (
 	"fmt"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/reader"
+	"github.com/yudaprama/pdf/internal/jbig2/reader"
 )
 
 // Tabler is the interface for all types of the huffman tables.

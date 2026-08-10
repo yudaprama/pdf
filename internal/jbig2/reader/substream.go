@@ -10,7 +10,7 @@ import (
 	"errors"
 	"io"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 )
 
 // SubstreamReader is the wrapper over the Reader's parts that is allowed only to

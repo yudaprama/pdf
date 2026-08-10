@@ -9,14 +9,14 @@ import (
 	"image"
 	"image/color"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/internal/imageutil"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/internal/imageutil"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/bitmap"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/decoder"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/document"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/errors"
+	"github.com/yudaprama/pdf/internal/jbig2"
+	"github.com/yudaprama/pdf/internal/jbig2/bitmap"
+	"github.com/yudaprama/pdf/internal/jbig2/decoder"
+	"github.com/yudaprama/pdf/internal/jbig2/document"
+	"github.com/yudaprama/pdf/internal/jbig2/errors"
 )
 
 // JBIG2CompressionType defines the enum compression type used by the JBIG2Encoder.

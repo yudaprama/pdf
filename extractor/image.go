@@ -6,10 +6,10 @@
 package extractor
 
 import (
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/contentstream"
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/contentstream"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/model"
 )
 
 // ImageExtractOptions contains options for controlling image extraction from

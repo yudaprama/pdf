@@ -11,9 +11,9 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/model"
 )
 
 // ContentStreamInlineImage is a representation of an inline image in a Content stream. Everything between the BI and EI operands.

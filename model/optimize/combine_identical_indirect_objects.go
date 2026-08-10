@@ -8,7 +8,7 @@ package optimize
 import (
 	"crypto/md5"
 
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/core"
 )
 
 // CombineIdenticalIndirectObjects combines identical indirect objects.

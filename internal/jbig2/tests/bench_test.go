@@ -12,8 +12,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/document"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/reader"
+	"github.com/yudaprama/pdf/internal/jbig2/document"
+	"github.com/yudaprama/pdf/internal/jbig2/reader"
 )
 
 // BenchmarkDecodeJBIG2Files benchmarks the decoding process of  jbig2 encoded images stored within pdf files.

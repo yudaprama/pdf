@@ -11,8 +11,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/model"
 )
 
 // wordBag is just a list of textWords in a rectangular region. It is needed for efficient

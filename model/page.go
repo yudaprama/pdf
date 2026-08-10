@@ -18,8 +18,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
 )
 
 // PdfPage represents a page in a PDF document. (7.7.3.3 - Table 30).

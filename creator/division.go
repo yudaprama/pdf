@@ -8,7 +8,7 @@ package creator
 import (
 	"errors"
 
-	"github.com/yudaprama/tools/pdf/common"
+	"github.com/yudaprama/pdf/common"
 )
 
 // Division is a container component which can wrap across multiple pages (unlike Block).

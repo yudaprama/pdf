@@ -6,8 +6,8 @@
 package optimize
 
 import (
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/model"
 )
 
 // Chain allows to use sequence of optimizers.

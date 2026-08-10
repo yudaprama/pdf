@@ -9,10 +9,10 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
-	"github.com/yudaprama/tools/pdf/internal/transform"
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
+	"github.com/yudaprama/pdf/internal/transform"
+	"github.com/yudaprama/pdf/model"
 )
 
 // GraphicsState is a basic graphics state implementation for PDF processing.

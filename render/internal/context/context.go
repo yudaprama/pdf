@@ -8,7 +8,7 @@ package context
 import (
 	"image"
 
-	"github.com/yudaprama/tools/pdf/internal/transform"
+	"github.com/yudaprama/pdf/internal/transform"
 )
 
 // Context defines operations for rendering to a particular target.

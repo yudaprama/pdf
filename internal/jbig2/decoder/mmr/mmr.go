@@ -8,8 +8,8 @@ package mmr
 import (
 	"errors"
 
-	"github.com/yudaprama/tools/pdf/internal/jbig2/bitmap"
-	"github.com/yudaprama/tools/pdf/internal/jbig2/reader"
+	"github.com/yudaprama/pdf/internal/jbig2/bitmap"
+	"github.com/yudaprama/pdf/internal/jbig2/reader"
 )
 
 // Decoder is the jbig2 mmr data decoder.

@@ -8,7 +8,7 @@ package extractor
 import (
 	"fmt"
 
-	"github.com/yudaprama/tools/pdf/model"
+	"github.com/yudaprama/pdf/model"
 )
 
 // Extractor stores and offers functionality for extracting content from PDF pages.

@@ -11,8 +11,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/yudaprama/tools/pdf/common"
-	"github.com/yudaprama/tools/pdf/core"
+	"github.com/yudaprama/pdf/common"
+	"github.com/yudaprama/pdf/core"
 )
 
 // FieldFlag represents form field flags. Some of the flags can apply to all types of fields whereas other
