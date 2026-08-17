@@ -238,10 +238,12 @@ func TestAppenderReplacePage(t *testing.T) {
 		objNums := reader.GetObjectNums()
 
 		// Number of objects should be equal.
-		// The appended version adds 8 new objects: Related to the new page and new Info, Catalog, Pages.
-		// As well as updating some previous objects.
+		// The appended revision adds 5 new objects: Info, Catalog, the replaced
+		// page 1 (a copy of page 2 that shares page 2's resource objects), and
+		// the external page 3 with its contents stream. As well as updating
+		// some previous objects.
 		// TODO: Check specifically the xrefs table regarding updates, new objects etc.
-		require.Equal(t, len(origObjNums)+9, len(objNums))
+		require.Equal(t, len(origObjNums)+5, len(objNums))
 
 		obj2, err := reader.GetIndirectObjectByNumber(2)
 		require.NoError(t, err)
@@ -255,7 +257,7 @@ func TestAppenderReplacePage(t *testing.T) {
 
 		// The first page is a copy of the second one.  And the third one is from another file.
 		// All new objects.
-		require.Equal(t, "[IObject:39, IObject:21, IObject:42]", kidsArr.String())
+		require.Equal(t, "[IObject:39, IObject:21, IObject:40]", kidsArr.String())
 	}
 }
 

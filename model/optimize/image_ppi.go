@@ -121,8 +121,13 @@ func (i *ImagePPI) Optimize(objects []core.PdfObject) (optimizedObjects []core.P
 		if !ok {
 			continue
 		}
-		contents, hasContents := core.GetArray(page.Get("Contents"))
-		if !hasContents {
+		// Contents may be a single stream or an array of streams.
+		var contentsEls []core.PdfObject
+		if contentsArr, hasContents := core.GetArray(page.Get("Contents")); hasContents {
+			contentsEls = contentsArr.Elements()
+		} else if contentsStream, hasContents := core.GetStream(page.Get("Contents")); hasContents {
+			contentsEls = []core.PdfObject{contentsStream}
+		} else {
 			continue
 		}
 		resources, hasResources := core.GetDict(page.Get("Resources"))
@@ -141,7 +146,7 @@ func (i *ImagePPI) Optimize(objects []core.PdfObject) (optimizedObjects []core.P
 				}
 			}
 		}
-		for _, obj := range contents.Elements() {
+		for _, obj := range contentsEls {
 			if stream, isStream := core.GetStream(obj); isStream {
 				streamEncoder, err := core.NewEncoderFromStream(stream)
 				if err != nil {

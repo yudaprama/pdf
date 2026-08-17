@@ -1,3 +1,4 @@
+//go:build unidev
 // +build unidev
 
 package main
@@ -45,8 +46,9 @@ func main() {
 // buildAll builds rune->glyph for glyph->rune maps for the sources as well as a glyph alias map
 // for the cases where multiple glyphs map to same rune.
 // NOTE: In cases where multiple glyphs map to the same rune, the order of gs.update() calls
-//       determines which glyphs go in the rune<->glyph maps. The first glyph that is found goes
-//       in the rune<->glyph maps and subsequent go in the aliases map.
+//
+//	determines which glyphs go in the rune<->glyph maps. The first glyph that is found goes
+//	in the rune<->glyph maps and subsequent go in the aliases map.
 func buildAll() error {
 	gs := newGlyphState()
 	gs.update(".notdef", map[string]rune{".notdef": 0xfffd})

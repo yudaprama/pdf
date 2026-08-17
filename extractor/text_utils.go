@@ -38,8 +38,9 @@ func maxInt(a, b int) int {
 
 // addNeighbours fills out the below and right fields of the paras in `paras`.
 // For each para `a`:
-//    a.below is the unique highest para completely below `a` that overlaps it in the x-direction
-//    a.right is the unique leftmost para completely to the right of `a` that overlaps it in the y-direction
+//
+//	a.below is the unique highest para completely below `a` that overlaps it in the x-direction
+//	a.right is the unique leftmost para completely to the right of `a` that overlaps it in the y-direction
 func (paras paraList) addNeighbours() {
 	paraNeighbours := paras.yNeighbours()
 	for _, para := range paras {

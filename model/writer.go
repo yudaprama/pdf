@@ -100,7 +100,7 @@ func getPdfProducer() string {
 	}
 
 	// Return default.
-	return fmt.Sprintf("UniDoc v%s (%s) AGPL")
+	return "UniDoc AGPLv3"
 }
 
 // SetPdfProducer sets the Producer attribute of the output PDF.

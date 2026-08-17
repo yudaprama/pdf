@@ -204,9 +204,11 @@ func (cmap *CMap) parseVersion() error {
 // parseSystemInfo parses a cmap CIDSystemInfo and adds it to `cmap`.
 // cmap CIDSystemInfo is define like this:
 // /CIDSystemInfo 3 dict dup begin
-//   /Registry (Adobe) def
-//   /Ordering (Japan1) def
-//   /Supplement 1 def
+//
+//	/Registry (Adobe) def
+//	/Ordering (Japan1) def
+//	/Supplement 1 def
+//
 // end def
 func (cmap *CMap) parseSystemInfo() error {
 	inDict := false

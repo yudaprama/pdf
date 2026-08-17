@@ -19,9 +19,10 @@ import (
 // Split tests splits a single page from a PDF, writes out and performs a sanity check on the output with ghostscript.
 // Also checks memory use.
 // Set environment variables:
-//		UNIDOC_E2E_FORCE_TESTS to "1" to force the tests to execute.
-//		UNIDOC_SPLIT_TESTDATA to the path of the corpus folder.
-//		UNIDOC_GS_BIN_PATH to the path of the ghostscript binary (gs) for validation.
+//
+//	UNIDOC_E2E_FORCE_TESTS to "1" to force the tests to execute.
+//	UNIDOC_SPLIT_TESTDATA to the path of the corpus folder.
+//	UNIDOC_GS_BIN_PATH to the path of the ghostscript binary (gs) for validation.
 var (
 	splitCorpusFolder = os.Getenv("UNIDOC_SPLIT_TESTDATA")
 )

@@ -32,16 +32,16 @@ func init() {
 // output files are rendered to PNG images and compared to counterpart golden
 // images found in a provided baseline directory.
 // The test input parameters are specified through environment variables:
-//  - UNIDOC_RENDERTEST_FORMFILL_TESTDATA
-//    The test corpus directory. If not provided, the test is skipped.
-//  - UNIDOC_RENDERTEST_FORMFILL_BASELINE
-//    The baseline corpus directory. If not provided, the test is skipped.
-//  - UNIDOC_RENDERTEST_FORMFILL_FORCETEST
-//    Set to "1" to force the test to run. If enabled, the test data and
-//    baseline corpus directories are required.
-//  - UNIDOC_RENDERTEST_FORMFILL_SAVE_BASELINE
-//    Set to "1" to save rendered images of new input files to the
-//    baseline directory.
+//   - UNIDOC_RENDERTEST_FORMFILL_TESTDATA
+//     The test corpus directory. If not provided, the test is skipped.
+//   - UNIDOC_RENDERTEST_FORMFILL_BASELINE
+//     The baseline corpus directory. If not provided, the test is skipped.
+//   - UNIDOC_RENDERTEST_FORMFILL_FORCETEST
+//     Set to "1" to force the test to run. If enabled, the test data and
+//     baseline corpus directories are required.
+//   - UNIDOC_RENDERTEST_FORMFILL_SAVE_BASELINE
+//     Set to "1" to save rendered images of new input files to the
+//     baseline directory.
 func TestFormFillRender(t *testing.T) {
 	// Read environment variables.
 	forceRun := os.Getenv("UNIDOC_RENDERTEST_FORMFILL_FORCETEST") == "1"

@@ -18,7 +18,7 @@
 //		return nil, err
 //	}
 //	defer f.Close()
-// 	pdfReader, err := unipdf.NewPdfReader(f)
+//	pdfReader, err := unipdf.NewPdfReader(f)
 //	if err != nil {
 //		fmt.Printf("Failed to read PDF file: %v\n", err)
 //		os.Exit(1)

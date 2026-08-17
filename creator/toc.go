@@ -9,7 +9,9 @@ package creator
 // It consists of a paragraph heading and a collection of
 // table of contents lines.
 // The representation of a table of contents line is as follows:
-//       [number] [title]      [separator] [page]
+//
+//	[number] [title]      [separator] [page]
+//
 // e.g.: Chapter1 Introduction ........... 1
 type TOC struct {
 	// The heading of the table of contents.

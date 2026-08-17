@@ -126,7 +126,12 @@ func TestTextExtractionFragments(t *testing.T) {
 
 	for _, f := range fragmentTests {
 		t.Run(f.name, func(t *testing.T) {
-			e := Extractor{resources: resources, contents: f.contents, mediaBox: r(-200, -200, 600, 800)}
+			e := Extractor{
+				resources:             resources,
+				contents:              f.contents,
+				mediaBox:              r(-200, -200, 600, 800),
+				PerformParagraphMerge: true,
+			}
 			text, err := e.ExtractText()
 			if err != nil {
 				t.Fatalf("Error extracting text: %q err=%v", f.name, err)
@@ -865,8 +870,9 @@ func endsWith(str, sub string) bool {
 
 // checkContains checks that `offsetMark` contains `expectedMark`.
 // Contains means: `expectedMark`.Offset is in `offsetMark` and for this element (call it tm)
-//   tm.Text == expectedMark.Text and the bounding boxes of
-//   tm and expectedMark are within `tol` of each other.
+//
+//	tm.Text == expectedMark.Text and the bounding boxes of
+//	tm and expectedMark are within `tol` of each other.
 func checkContains(t *testing.T, desc string, offsetMark map[int]TextMark, expectedMark TextMark) {
 	tm, ok := offsetMark[expectedMark.Offset]
 	if !ok {

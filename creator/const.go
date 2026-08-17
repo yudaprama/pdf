@@ -15,9 +15,7 @@ var PPI float64 = 72 // Points per inch. (Default resolution).
 // Points per mm. (Default resolution).
 var PPMM = float64(72 * 1.0 / 25.4)
 
-//
 // Commonly used page sizes
-//
 var (
 	PageSizeA3     = PageSize{297 * PPMM, 420 * PPMM}
 	PageSizeA4     = PageSize{210 * PPMM, 297 * PPMM}

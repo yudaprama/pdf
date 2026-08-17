@@ -1,3 +1,4 @@
+//go:build unidev
 // +build unidev
 
 package main

@@ -16,12 +16,12 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/unidoc/unitype"
 	"github.com/yudaprama/pdf/common"
 	"github.com/yudaprama/pdf/core"
 	"github.com/yudaprama/pdf/internal/cmap"
 	"github.com/yudaprama/pdf/internal/textencoding"
 	"github.com/yudaprama/pdf/model/internal/fonts"
-	"github.com/unidoc/unitype"
 )
 
 /*

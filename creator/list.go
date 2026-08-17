@@ -17,7 +17,9 @@ type listItem struct {
 
 // List represents a list of items.
 // The representation of a list item is as follows:
-//       [marker] [content]
+//
+//	[marker] [content]
+//
 // e.g.:        • This is the content of the item.
 // The supported components to add content to list items are:
 // - Paragraph

@@ -52,11 +52,11 @@ func New(page *model.PdfPage) (*Extractor, error) {
 		return nil, fmt.Errorf("extractor requires mediaBox. %v", err)
 	}
 	e := &Extractor{
-		contents:    contents,
-		resources:   page.Resources,
-		mediaBox:    *mediaBox,
-		fontCache:   map[string]fontEntry{},
-		formResults: map[string]textResult{},
+		contents:              contents,
+		resources:             page.Resources,
+		mediaBox:              *mediaBox,
+		fontCache:             map[string]fontEntry{},
+		formResults:           map[string]textResult{},
 		PerformParagraphMerge: true,
 	}
 	return e, nil
@@ -65,10 +65,10 @@ func New(page *model.PdfPage) (*Extractor, error) {
 // NewFromContents creates a new extractor from contents and page resources.
 func NewFromContents(contents string, resources *model.PdfPageResources) (*Extractor, error) {
 	e := &Extractor{
-		contents:    contents,
-		resources:   resources,
-		fontCache:   map[string]fontEntry{},
-		formResults: map[string]textResult{},
+		contents:              contents,
+		resources:             resources,
+		fontCache:             map[string]fontEntry{},
+		formResults:           map[string]textResult{},
 		PerformParagraphMerge: true,
 	}
 	return e, nil

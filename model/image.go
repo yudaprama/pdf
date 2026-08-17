@@ -297,14 +297,15 @@ func (img *Image) ColorAt(x, y int) (gocolor.Color, error) {
 // value.  Sets the image's BitsPerComponent to the target value following resampling.
 //
 // For example, converting an 8-bit RGB image to 1-bit grayscale (common for scanned images):
-//   // Convert RGB image to grayscale.
-//   rgbColorSpace := pdf.NewPdfColorspaceDeviceRGB()
-//   grayImage, err := rgbColorSpace.ImageToGray(rgbImage)
-//   if err != nil {
-//     return err
-//   }
-//   // Resample as 1 bit.
-//   grayImage.Resample(1)
+//
+//	// Convert RGB image to grayscale.
+//	rgbColorSpace := pdf.NewPdfColorspaceDeviceRGB()
+//	grayImage, err := rgbColorSpace.ImageToGray(rgbImage)
+//	if err != nil {
+//	  return err
+//	}
+//	// Resample as 1 bit.
+//	grayImage.Resample(1)
 func (img *Image) Resample(targetBitsPerComponent int64) {
 	samples := img.GetSamples()
 

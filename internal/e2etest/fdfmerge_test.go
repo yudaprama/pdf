@@ -22,9 +22,10 @@ import (
 // FDF merge tests merge FDF data into template PDF data and flattens to an output PDF file.
 // Output files are checked with ghostscript and memory consumption is measured.
 // Set environment variables:
-//		UNIDOC_E2E_FORCE_TESTS to "1" to force the tests to execute.
-//		UNIDOC_FDFMERGE_TESTDATA to the path of the corpus folder.
-//		UNIDOC_GS_BIN_PATH to the path of the ghostscript binary (gs) for validation.
+//
+//	UNIDOC_E2E_FORCE_TESTS to "1" to force the tests to execute.
+//	UNIDOC_FDFMERGE_TESTDATA to the path of the corpus folder.
+//	UNIDOC_GS_BIN_PATH to the path of the ghostscript binary (gs) for validation.
 var (
 	fdfMergeCorpusFolder = os.Getenv("UNIDOC_FDFMERGE_TESTDATA")
 )

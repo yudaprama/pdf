@@ -85,7 +85,7 @@ func (enc *TrueTypeFontEncoder) String() string {
 
 	for i := 0; i < n; i++ {
 		r := runes[i]
-		parts = append(parts, fmt.Sprintf("%d=0x%02x: %q",
+		parts = append(parts, fmt.Sprintf("%d=0x%02x: %d",
 			r, r, enc.runeToGIDMap[r]))
 	}
 	return fmt.Sprintf("TRUETYPE_ENCODER{%s}", strings.Join(parts, ", "))

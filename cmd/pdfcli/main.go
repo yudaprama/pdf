@@ -83,7 +83,7 @@ func usage() {
 	fmt.Fprintf(os.Stderr, `pdfcli — PDF operations via github.com/yudaprama/pdf
 
 Usage:
-  pdfcli extract [--pages N,N] <input.pdf>               Extract text (stdout)
+  pdfcli extract [--md] [--pages N,N] <input.pdf>         Extract text (stdout; --md = Markdown)
   pdfcli search <pattern> [--pages N,N] <input.pdf>      Search text (JSON stdout)
   pdfcli replace <pattern> <replacement> [--pages N,N]    Replace text in-place
       <input.pdf> <output.pdf>
@@ -205,6 +205,7 @@ func resolvePages(reader *model.PdfReader, spec []int) ([]int, error) {
 
 func cmdExtract(args []string) error {
 	pagesSpec := ""
+	markdown := false
 	input := ""
 
 	for i := 0; i < len(args); i++ {
@@ -215,6 +216,8 @@ func cmdExtract(args []string) error {
 				return errors.New("--pages requires a value")
 			}
 			pagesSpec = args[i]
+		case "--md":
+			markdown = true
 		default:
 			if input == "" {
 				input = args[i]
@@ -222,7 +225,7 @@ func cmdExtract(args []string) error {
 		}
 	}
 	if input == "" {
-		return errors.New("usage: pdfcli extract [--pages N,N] <input.pdf>")
+		return errors.New("usage: pdfcli extract [--md] [--pages N,N] <input.pdf>")
 	}
 
 	reader, f, err := readPDF(input)
@@ -253,6 +256,18 @@ func cmdExtract(args []string) error {
 		if err != nil {
 			return fmt.Errorf("page %d: %w", p, err)
 		}
+		if markdown {
+			pt, _, _, err := ex.ExtractPageText()
+			if err != nil {
+				return fmt.Errorf("page %d: %w", p, err)
+			}
+			if md := pt.Markdown(); md != "" {
+				fmt.Printf("--- page %d ---\n%s", p, md)
+			} else {
+				fmt.Printf("--- page %d ---\n", p)
+			}
+			continue
+		}
 		text, err := ex.ExtractText()
 		if err != nil {
 			return fmt.Errorf("page %d: %w", p, err)
@@ -265,8 +280,8 @@ func cmdExtract(args []string) error {
 // --- search -----------------------------------------------------------------
 
 type searchMatch struct {
-	Page    int          `json:"page"`
-	Matches [][]int      `json:"matches"`
+	Page    int     `json:"page"`
+	Matches [][]int `json:"matches"`
 }
 
 func cmdSearch(args []string) error {
@@ -560,12 +575,12 @@ func cmdSplit(args []string) error {
 // --- info -------------------------------------------------------------------
 
 type pageInfo struct {
-	Page        int      `json:"page"`
-	Width       float64  `json:"width,omitempty"`
-	Height      float64  `json:"height,omitempty"`
-	Rotation    int64    `json:"rotation,omitempty"`
+	Page        int        `json:"page"`
+	Width       float64    `json:"width,omitempty"`
+	Height      float64    `json:"height,omitempty"`
+	Rotation    int64      `json:"rotation,omitempty"`
 	MediaBox    [4]float64 `json:"mediaBox,omitempty"`
-	HasMediaBox bool     `json:"hasMediaBox"`
+	HasMediaBox bool       `json:"hasMediaBox"`
 }
 
 type infoResult struct {

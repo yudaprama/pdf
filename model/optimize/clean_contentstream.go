@@ -22,7 +22,8 @@ type CleanContentstream struct {
 // 1. Marked content operators are cleaned.
 // 2. Tm with 1 0 0 1 params are converted to Td (slightly shorter for same transformation).
 // TODO: Add operations that track the state and remove unnecessary operands, such as duplicates
-//  or ones setting default values, or ones not drawing anything.
+//
+//	or ones setting default values, or ones not drawing anything.
 func filterOps(ops *contentstream.ContentStreamOperations) *contentstream.ContentStreamOperations {
 	if ops == nil {
 		return nil

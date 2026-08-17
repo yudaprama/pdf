@@ -2677,7 +2677,8 @@ func (cs *PdfColorspaceSpecialSeparation) ImageToRGB(img Image) (Image, error) {
 // spaces, except they can contain an arbitrary number of color components.
 //
 // Format: [/DeviceN names alternateSpace tintTransform]
-//     or: [/DeviceN names alternateSpace tintTransform attributes]
+//
+//	or: [/DeviceN names alternateSpace tintTransform attributes]
 type PdfColorspaceDeviceN struct {
 	ColorantNames  *core.PdfObjectArray
 	AlternateSpace PdfColorspace
@@ -2785,7 +2786,8 @@ func newPdfColorspaceDeviceNFromPdfObject(obj core.PdfObject) (*PdfColorspaceDev
 
 // ToPdfObject returns a *PdfIndirectObject containing a *PdfObjectArray representation of the DeviceN colorspace.
 // Format: [/DeviceN names alternateSpace tintTransform]
-//     or: [/DeviceN names alternateSpace tintTransform attributes]
+//
+//	or: [/DeviceN names alternateSpace tintTransform attributes]
 func (cs *PdfColorspaceDeviceN) ToPdfObject() core.PdfObject {
 	csArray := core.MakeArray(core.MakeName("DeviceN"))
 	csArray.Append(cs.ColorantNames)

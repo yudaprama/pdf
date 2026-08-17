@@ -133,8 +133,9 @@ func DilateBrick(d, s *Bitmap, hSize, vSize int) (*Bitmap, error) {
 // Dilate the source bitmap 's' using hits in the selection 'sel'.
 // The 'd' destination bitmap is optional.
 // The following cases are possible:
+//
 //	'd' == 's' 	the function writes the result back to 'src'.
-// 	'd' == nil 	the function creates new bitmap and writes the result to it.
+//	'd' == nil 	the function creates new bitmap and writes the result to it.
 //	'd' != 's' 	puts the results into existing 'd'.
 func Dilate(d *Bitmap, s *Bitmap, sel *Selection) (*Bitmap, error) {
 	return dilate(d, s, sel)

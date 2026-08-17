@@ -1,3 +1,4 @@
+//go:build unidev
 // +build unidev
 
 // Parse character metrics from an AFM file to convert into a static go code declaration.
