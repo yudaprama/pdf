@@ -28,6 +28,13 @@ type pdfWriterCfg struct {
 	producer string
 }
 
+type exitCodeError struct {
+	code int
+	msg  string
+}
+
+func (e exitCodeError) Error() string { return e.msg }
+
 func main() {
 	args := os.Args[1:]
 	if len(args) == 0 {
@@ -74,7 +81,11 @@ func main() {
 		os.Exit(1)
 	}
 	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
+		fmt.Fprintf(os.Stderr, "%s: %v\n", cmd, err)
+		var ece exitCodeError
+		if errors.As(err, &ece) {
+			os.Exit(ece.code)
+		}
 		os.Exit(1)
 	}
 }
@@ -457,11 +468,8 @@ func cmdReplace(args []string) error {
 	}
 
 	editor := extractor.NewEditor(reader)
-	matches, err := editor.Search(pattern, ps)
+	report, err := editor.ReplaceWithReport(pattern, replacement, ps)
 	if err != nil {
-		return err
-	}
-	if err := editor.Replace(pattern, replacement, ps); err != nil {
 		return err
 	}
 
@@ -484,18 +492,25 @@ func cmdReplace(args []string) error {
 		return err
 	}
 
+	if report.TotalMatched() == 0 {
+		err = exitCodeError{code: 2, msg: fmt.Sprintf("no matches found for %q", pattern)}
+	}
+
 	if jsonOutput {
 		out, _ := json.Marshal(map[string]any{
 			"pattern":     pattern,
 			"replacement": replacement,
-			"pages":       len(matches),
+			"matched":     report.TotalMatched(),
+			"replaced":    report.TotalReplaced(),
+			"pages":       report.Pages,
 			"output":      output,
 		})
 		fmt.Println(string(out))
 	} else {
-		fmt.Fprintf(os.Stderr, "replaced %q → %q on %d page(s) → %s\n", pattern, replacement, len(matches), output)
+		fmt.Fprintf(os.Stderr, "replaced %q → %q (%d matched / %d replaced) → %s\n",
+			pattern, replacement, report.TotalMatched(), report.TotalReplaced(), output)
 	}
-	return nil
+	return err
 }
 
 // --- merge ------------------------------------------------------------------

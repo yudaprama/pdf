@@ -31,6 +31,38 @@ type Match struct {
 	Locations []Box
 }
 
+// PageReplace summarizes the replacements performed on one page.
+type PageReplace struct {
+	Page     int
+	Matched  int // occurrences of the pattern found in the page text
+	Replaced int // occurrences replaced
+}
+
+// ReplaceReport summarizes a Replace operation across all processed pages.
+type ReplaceReport struct {
+	Pattern     string
+	Replacement string
+	Pages       []PageReplace
+}
+
+// TotalMatched returns the number of pattern occurrences found.
+func (r ReplaceReport) TotalMatched() int {
+	total := 0
+	for _, p := range r.Pages {
+		total += p.Matched
+	}
+	return total
+}
+
+// TotalReplaced returns the number of occurrences replaced.
+func (r ReplaceReport) TotalReplaced() int {
+	total := 0
+	for _, p := range r.Pages {
+		total += p.Replaced
+	}
+	return total
+}
+
 // Editor provides text search and replacement helpers for a PDF reader.
 type Editor struct {
 	reader *model.PdfReader
@@ -94,29 +126,54 @@ func (e *Editor) Search(pattern string, pages []int) (map[int]Match, error) {
 // modifying the page) when a font cannot encode a replacement rune, in which
 // case no characters are silently dropped.
 func (e *Editor) Replace(pattern, replacement string, pages []int) error {
+	_, err := e.ReplaceWithReport(pattern, replacement, pages)
+	return err
+}
+
+// ReplaceWithReport replaces all occurrences of pattern with replacement on
+// selected pages and returns a per-page summary. If pages is empty, all pages
+// are processed.
+//
+// Patterns may contain spaces that span layout gaps in the source document
+// (text split across multiple show-text operations): the gaps are matched via
+// synthetic separators and never consume encoded characters. Replacement
+// width changes are compensated with TJ adjustments so that the glyphs
+// following a replacement stay in place. An error is returned (without
+// modifying the document) when a font cannot encode a replacement rune, in
+// which case no characters are silently dropped.
+func (e *Editor) ReplaceWithReport(pattern, replacement string, pages []int) (ReplaceReport, error) {
+	report := ReplaceReport{Pattern: pattern, Replacement: replacement}
 	if e == nil || e.reader == nil {
-		return fmt.Errorf("nil editor or reader")
+		return report, fmt.Errorf("nil editor or reader")
 	}
 	if pattern == "" {
-		return fmt.Errorf("pattern cannot be empty")
+		return report, fmt.Errorf("pattern cannot be empty")
 	}
 
 	targetPages, err := normalizePages(e.reader, pages)
 	if err != nil {
-		return err
+		return report, err
 	}
 
 	for _, pageNum := range targetPages {
 		page, err := e.reader.GetPage(pageNum)
 		if err != nil {
-			return err
+			return report, err
 		}
-		if err := searchReplacePageText(page, pattern, replacement); err != nil {
-			return err
+		matched, replaced, err := searchReplacePageText(page, pattern, replacement)
+		if err != nil {
+			return report, err
+		}
+		if matched > 0 {
+			report.Pages = append(report.Pages, PageReplace{
+				Page:     pageNum,
+				Matched:  matched,
+				Replaced: replaced,
+			})
 		}
 	}
 
-	return nil
+	return report, nil
 }
 
 // Write writes all pages from the reader to writer.
@@ -284,12 +341,17 @@ func (tc *textChunk) encode() {
 type textChunks struct {
 	text   string
 	chunks []*textChunk
+
+	// opRewrites maps show-text operations that must be replaced by operator
+	// sequences (e.g. ' → T* + TJ) to those sequences. It is populated by
+	// applyAdjustments and consumed by the caller that owns the operation list.
+	opRewrites map[*contentstream.ContentStreamOperation][]*contentstream.ContentStreamOperation
 }
 
-// Layout gap classification ratios, relative to the font size in use.
+// Layout gap classification, relative to the font size in use. The ratios are
+// shared with the text extractor (text_const.go) so that Search and Replace
+// classify the same gaps the same way.
 const (
-	spaceGapRatio = 0.15 // minimum horizontal gap classified as a word space
-	lineGapRatio  = 0.5  // minimum vertical change classified as a line break
 	defaultSpaceW = 250. // fallback synthetic space width (1/1000 units)
 )
 
@@ -301,7 +363,11 @@ type textPen struct {
 	x, y             float64 // pen position
 	leading          float64
 	fontSize         float64
-	rotated          bool
+
+	// dirX, dirY is the unit writing direction in device space, taken from the
+	// text matrix. It lets rotated text advance and classify gaps along the
+	// actual writing direction instead of assuming horizontal text.
+	dirX, dirY float64
 
 	// repositioned is set when a positioning operation occurred since the last
 	// show-text operation. sepHint is the fallback separator classification
@@ -313,26 +379,50 @@ type textPen struct {
 	prevEndKnown       bool
 }
 
+// setDirection updates the writing direction from the vector components of
+// the text matrix. Returns the pen so calls can be chained.
+func (p *textPen) setDirection(a, b float64) {
+	// The writing direction in text space is +x; in device space it maps to
+	// (a, b) (Tm's first column).
+	len := math.Hypot(a, b)
+	if len < 1e-9 {
+		p.dirX, p.dirY = 1, 0
+		return
+	}
+	p.dirX, p.dirY = a/len, b/len
+}
+
 // classifyGap returns the synthetic separator implied by moving the pen to
-// (x, y) from the end of the previously shown chunk.
+// (x, y) from the end of the previously shown chunk. The gap is projected
+// onto the writing direction (word space) and perpendicular to it (line
+// break), matching the extractor's maxWordAdvanceR / lineDepthR ratios.
 func (p *textPen) classifyGap(x, y float64) string {
-	if !p.prevEndKnown || p.rotated {
+	if !p.prevEndKnown {
 		return p.sepHint
 	}
 	fs := p.fontSize
 	if fs <= 0 {
 		fs = 10
 	}
-	dy := y - p.prevEndY
 	dx := x - p.prevEndX
+	dy := y - p.prevEndY
+	readingGap := dx*p.dirX + dy*p.dirY
+	lineGap := math.Abs(-dx*p.dirY + dy*p.dirX)
 	switch {
-	case math.Abs(dy) >= lineGapRatio*fs:
+	case lineGap >= lineDepthR*fs:
 		return "\n"
-	case dx >= spaceGapRatio*fs:
+	case readingGap >= maxWordAdvanceR*fs:
 		return " "
 	default:
 		return ""
 	}
+}
+
+// advance moves the pen along the writing direction by the text-space width
+// `w` (already scaled to points).
+func (p *textPen) advance(w float64) {
+	p.x += w * p.dirX
+	p.y += w * p.dirY
 }
 
 // widthOf returns the summed width of the runes in `s` in 1/1000 text space
@@ -479,8 +569,8 @@ func (tc *textChunks) spliceMatch(start, end int, replacement string, matchesPer
 	// the spaces are then rendered positionally as TJ adjustments.
 	splitSpace := ch.font != nil && strings.ContainsRune(replacement, ' ') && !ch.font.RuneEncodable(' ')
 	if splitSpace {
-		if ch.op == nil || ch.op.Operand == "'" || ch.op.Operand == "\"" {
-			return fmt.Errorf("cannot insert spaces with font %q: the surrounding text operator does not support adjustments", ch.font.BaseFont())
+		if ch.op == nil {
+			return fmt.Errorf("cannot insert spaces with font %q: no surrounding text operator to adjust", ch.font.BaseFont())
 		}
 		if matchesPerChunk[ch] > 1 {
 			return fmt.Errorf("cannot insert spaces with font %q: multiple matches within one string", ch.font.BaseFont())
@@ -540,13 +630,18 @@ func (tc *textChunks) rebuildText() {
 
 // applyAdjustments writes pending width compensations and synthetic spaces
 // back into the content stream operations. Plain Tj operations are converted
-// to TJ so that adjustment numbers can be expressed.
-func (tc *textChunks) applyAdjustments() {
+// to TJ so that adjustment numbers can be expressed. The ' and " operators
+// cannot carry adjustments, so they are rewritten into their equivalent
+// operator sequences (T* Tj and Tw/Tc/T* Tj respectively); the returned map
+// maps each rewritten operation to its replacement operations, for the caller
+// to splice into the operation list.
+func (tc *textChunks) applyAdjustments() map[*contentstream.ContentStreamOperation][]*contentstream.ContentStreamOperation {
 	type insertion struct {
 		afterIdx int
 		elems    []core.PdfObject
 	}
 	arrInserts := map[*core.PdfObjectArray][]insertion{}
+	opRewrites := map[*contentstream.ContentStreamOperation][]*contentstream.ContentStreamOperation{}
 
 	for _, ch := range tc.chunks {
 		if ch.adjAfter == 0 && len(ch.extraSegments) == 0 {
@@ -578,9 +673,29 @@ func (tc *textChunks) applyAdjustments() {
 				ch.op.Params = []core.PdfObject{arr}
 				ch.op.Operand = "TJ"
 			}
+		case "'":
+			// ' is T* followed by Tj: preserve the line move, then show via TJ.
+			if len(ch.op.Params) == 1 {
+				arr := core.MakeArray(ch.op.Params[0])
+				arr.Append(elems...)
+				opRewrites[ch.op] = []*contentstream.ContentStreamOperation{
+					{Operand: "T*"},
+					{Operand: "TJ", Params: []core.PdfObject{arr}},
+				}
+			}
+		case "\"":
+			// " is aw Tw, ac Tc, T*, Tj in one operator.
+			if len(ch.op.Params) == 3 {
+				arr := core.MakeArray(ch.op.Params[2])
+				arr.Append(elems...)
+				opRewrites[ch.op] = []*contentstream.ContentStreamOperation{
+					{Operand: "Tw", Params: []core.PdfObject{ch.op.Params[0]}},
+					{Operand: "Tc", Params: []core.PdfObject{ch.op.Params[1]}},
+					{Operand: "T*"},
+					{Operand: "TJ", Params: []core.PdfObject{arr}},
+				}
+			}
 		default:
-			// ' and " carry extra parameter semantics that a TJ conversion
-			// would lose; skip compensation for them.
 			common.Log.Debug("replace: skipping width compensation for operator %q", ch.op.Operand)
 		}
 	}
@@ -598,6 +713,7 @@ func (tc *textChunks) applyAdjustments() {
 			*arr = *newArr
 		}
 	}
+	return opRewrites
 }
 
 func (tc *textChunks) replace(search, replacement string) error {
@@ -630,19 +746,36 @@ func (tc *textChunks) replace(search, replacement string) error {
 	}
 
 	tc.rebuildText()
-	tc.applyAdjustments()
+	tc.opRewrites = tc.applyAdjustments()
 	return nil
 }
 
-func searchReplacePageText(page *model.PdfPage, searchText, replaceText string) error {
+// applyOpRewrites returns a copy of `ops` where every rewritten operation is
+// replaced by its operator sequence.
+func (tc *textChunks) applyOpRewrites(ops []*contentstream.ContentStreamOperation) []*contentstream.ContentStreamOperation {
+	if len(tc.opRewrites) == 0 {
+		return ops
+	}
+	out := make([]*contentstream.ContentStreamOperation, 0, len(ops))
+	for _, op := range ops {
+		if repl, ok := tc.opRewrites[op]; ok {
+			out = append(out, repl...)
+			continue
+		}
+		out = append(out, op)
+	}
+	return out
+}
+
+func searchReplacePageText(page *model.PdfPage, searchText, replaceText string) (matched, replaced int, err error) {
 	contents, err := page.GetAllContentStreams()
 	if err != nil {
-		return err
+		return 0, 0, err
 	}
 
 	ops, err := contentstream.NewContentStreamParser(contents).Parse()
 	if err != nil {
-		return err
+		return 0, 0, err
 	}
 
 	var currFont *model.PdfFont
@@ -691,8 +824,8 @@ func searchReplacePageText(page *model.PdfPage, searchText, replaceText string) 
 		})
 		tc.text += sep + str
 
-		if w, ok := widthOf(currFont, str); ok && pen.fontSize > 0 && !pen.rotated {
-			pen.x += w / 1000.0 * pen.fontSize
+		if w, ok := widthOf(currFont, str); ok && pen.fontSize > 0 {
+			pen.advance(w / 1000.0 * pen.fontSize)
 			pen.prevEndX, pen.prevEndY = pen.x, pen.y
 			pen.prevEndKnown = true
 		} else {
@@ -718,24 +851,14 @@ func searchReplacePageText(page *model.PdfPage, searchText, replaceText string) 
 			case "BT":
 				pen.originX, pen.originY = 0, 0
 				pen.x, pen.y = 0, 0
-				pen.rotated = false
+				pen.setDirection(1, 0)
 				pen.repositioned = false
 				pen.prevEndKnown = false
 			case "Tm":
 				if len(op.Params) == 6 {
 					if f, err := core.GetNumbersAsFloat(op.Params); err == nil {
-						fs := pen.fontSize
-						if fs <= 0 {
-							fs = 10
-						}
-						if math.Abs(f[5]-pen.y) >= lineGapRatio*fs {
-							pen.sepHint = "\n"
-						} else if f[4]-pen.x >= spaceGapRatio*fs {
-							pen.sepHint = " "
-						} else {
-							pen.sepHint = ""
-						}
-						pen.rotated = math.Abs(f[1]) > 1e-6 || math.Abs(f[2]) > 1e-6
+						pen.setDirection(f[0], f[1])
+						pen.sepHint = pen.classifyGap(f[4], f[5])
 						pen.originX, pen.originY = f[4], f[5]
 						pen.x, pen.y = f[4], f[5]
 						pen.repositioned = true
@@ -747,17 +870,7 @@ func searchReplacePageText(page *model.PdfPage, searchText, replaceText string) 
 						if op.Operand == "TD" {
 							pen.leading = -f[1]
 						}
-						fs := pen.fontSize
-						if fs <= 0 {
-							fs = 10
-						}
-						if math.Abs(f[1]) >= lineGapRatio*fs {
-							pen.sepHint = "\n"
-						} else if f[0] >= spaceGapRatio*fs {
-							pen.sepHint = " "
-						} else {
-							pen.sepHint = ""
-						}
+						pen.sepHint = pen.classifyGap(pen.originX+f[0], pen.originY+f[1])
 						pen.originX += f[0]
 						pen.originY += f[1]
 						pen.x, pen.y = pen.originX, pen.originY
@@ -809,7 +922,7 @@ func searchReplacePageText(page *model.PdfPage, searchText, replaceText string) 
 						sep := ""
 						if i > 0 && pendingAdj != 0 && pen.fontSize > 0 {
 							gap := -pendingAdj / 1000.0 * pen.fontSize
-							if gap >= spaceGapRatio*pen.fontSize {
+							if gap >= maxWordAdvanceR*pen.fontSize {
 								sep = " "
 							}
 						}
@@ -849,11 +962,16 @@ func searchReplacePageText(page *model.PdfPage, searchText, replaceText string) 
 		})
 
 	if err = processor.Process(page.Resources); err != nil {
-		return err
+		return 0, 0, err
 	}
 
+	matched = len(indexAll(tc.text, searchText))
 	if err := tc.replace(searchText, replaceText); err != nil {
-		return err
+		return matched, 0, err
 	}
-	return page.SetContentStreams([]string{ops.String()}, core.NewFlateEncoder())
+	finalOps := contentstream.ContentStreamOperations(tc.applyOpRewrites(*ops))
+	if err := page.SetContentStreams([]string{finalOps.String()}, core.NewFlateEncoder()); err != nil {
+		return matched, 0, err
+	}
+	return matched, matched, nil
 }
