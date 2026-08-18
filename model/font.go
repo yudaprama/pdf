@@ -554,6 +554,28 @@ func (font *PdfFont) StringToCharcodeBytes(str string) ([]byte, int) {
 	return font.RunesToCharcodeBytes([]rune(str))
 }
 
+// RuneEncodable reports whether rune `r` can be mapped to a character code by
+// any of the font's encoders: the ToUnicode CMap (reverse lookup) or the font
+// encoding. It mirrors the encoder chain used by RunesToCharcodeBytes so that
+// callers can validate runes before mutating a document.
+func (font *PdfFont) RuneEncodable(r rune) bool {
+	if font == nil || font.context == nil {
+		return false
+	}
+	if toUnicode := font.baseFields().toUnicodeCmap; toUnicode != nil {
+		enc := textencoding.NewCMapEncoder("", nil, toUnicode)
+		if _, ok := enc.RuneToCharcode(r); ok {
+			return true
+		}
+	}
+	if encoder := font.Encoder(); encoder != nil {
+		if _, ok := encoder.RuneToCharcode(r); ok {
+			return true
+		}
+	}
+	return false
+}
+
 // ToPdfObject converts the PdfFont object to its PDF representation.
 func (font *PdfFont) ToPdfObject() core.PdfObject {
 	if font.context == nil {

@@ -83,31 +83,34 @@ func usage() {
 	fmt.Fprintf(os.Stderr, `pdfcli — PDF operations via github.com/yudaprama/pdf
 
 Usage:
-  pdfcli extract [--md] [--pages N,N] <input.pdf>         Extract text (stdout; --md = Markdown)
-  pdfcli search <pattern> [--pages N,N] <input.pdf>      Search text (JSON stdout)
-  pdfcli replace <pattern> <replacement> [--pages N,N]    Replace text in-place
-      <input.pdf> <output.pdf>
-  pdfcli merge <input.pdf>... <output.pdf>                Merge PDFs
-  pdfcli split [--ranges R,R] <input.pdf> <outdir/>      Split PDF
-  pdfcli info <input.pdf>                                 Page info (JSON stdout)
-  pdfcli metadata get <input.pdf>                         Read metadata (JSON stdout)
-  pdfcli metadata set <input.pdf> <output.pdf>            Write metadata
+  pdfcli extract [--md] [--json] [--pages N,N] <input.pdf>  Extract text (stdout; --md = Markdown)
+  pdfcli search <pattern> [--pages N,N] <input.pdf>         Search text (JSON stdout)
+  pdfcli replace <pattern> <replacement> [--pages N,N]      Replace text
+      [--in-place] <input.pdf> [<output.pdf>]
+  pdfcli merge [--json] <input.pdf>... <output.pdf>         Merge PDFs
+  pdfcli split [--ranges R,R] <input.pdf> <outdir/>         Split PDF
+  pdfcli info <input.pdf>                                   Page info (JSON stdout)
+  pdfcli metadata get <input.pdf>                           Read metadata (JSON stdout)
+  pdfcli metadata set [--json] <input.pdf> <output.pdf>     Write metadata
       --title "" --author "" --subject "" --keywords "" --creator "" --producer ""
-  pdfcli images [--pages N,N] [--format png|jpg]          Extract images to files
+  pdfcli images [--pages N,N] [--format png|jpg]            Extract images to files
       <input.pdf> <outdir/>
+
+Any <input.pdf> may be '-' to read the PDF bytes from stdin.
 
 Flags:
   --pages N,N  Page selection: "1,3,5" or "1-3,5" or "*" (all)
   --ranges R,R Split ranges: "1-2,3,4-5"
   --format png|jpg  Image output format (default png)
-  --json       Machine-readable JSON output
+  --in-place   replace: atomically overwrite <input.pdf> (temp file + rename)
+  --json       Machine-readable JSON output (extract, merge, replace, metadata set)
 `)
 }
 
 // --- helpers ----------------------------------------------------------------
 
-func readPDF(path string) (*model.PdfReader, *os.File, error) {
-	f, err := os.Open(path)
+func readPDF(path string) (*model.PdfReader, readSeekCloser, error) {
+	f, err := openInput(path)
 	if err != nil {
 		return nil, nil, fmt.Errorf("open %s: %w", path, err)
 	}
@@ -121,6 +124,29 @@ func readPDF(path string) (*model.PdfReader, *os.File, error) {
 
 func readPDFBytes(data []byte) (*model.PdfReader, error) {
 	return model.NewPdfReader(bytes.NewReader(data))
+}
+
+// readSeekCloser is satisfied by *os.File and stdinReader.
+type readSeekCloser interface {
+	io.ReadSeeker
+	io.Closer
+}
+
+type stdinReader struct {
+	*bytes.Reader
+}
+
+func (stdinReader) Close() error { return nil }
+
+func openInput(path string) (readSeekCloser, error) {
+	if path == "-" {
+		data, err := readStdin()
+		if err != nil {
+			return nil, err
+		}
+		return stdinReader{bytes.NewReader(data)}, nil
+	}
+	return os.Open(path)
 }
 
 type pageSpec struct {
@@ -206,6 +232,7 @@ func resolvePages(reader *model.PdfReader, spec []int) ([]int, error) {
 func cmdExtract(args []string) error {
 	pagesSpec := ""
 	markdown := false
+	jsonOutput := false
 	input := ""
 
 	for i := 0; i < len(args); i++ {
@@ -218,6 +245,8 @@ func cmdExtract(args []string) error {
 			pagesSpec = args[i]
 		case "--md":
 			markdown = true
+		case "--json":
+			jsonOutput = true
 		default:
 			if input == "" {
 				input = args[i]
@@ -225,7 +254,7 @@ func cmdExtract(args []string) error {
 		}
 	}
 	if input == "" {
-		return errors.New("usage: pdfcli extract [--md] [--pages N,N] <input.pdf>")
+		return errors.New("usage: pdfcli extract [--md] [--json] [--pages N,N] <input.pdf>")
 	}
 
 	reader, f, err := readPDF(input)
@@ -247,6 +276,12 @@ func cmdExtract(args []string) error {
 		return err
 	}
 
+	type pageResult struct {
+		Page int    `json:"page"`
+		Text string `json:"text"`
+	}
+	var results []pageResult
+
 	for _, p := range pages {
 		page, err := reader.GetPage(p)
 		if err != nil {
@@ -256,23 +291,38 @@ func cmdExtract(args []string) error {
 		if err != nil {
 			return fmt.Errorf("page %d: %w", p, err)
 		}
+
+		var text string
 		if markdown {
 			pt, _, _, err := ex.ExtractPageText()
 			if err != nil {
 				return fmt.Errorf("page %d: %w", p, err)
 			}
-			if md := pt.Markdown(); md != "" {
-				fmt.Printf("--- page %d ---\n%s", p, md)
-			} else {
-				fmt.Printf("--- page %d ---\n", p)
+			text = pt.Markdown()
+		} else {
+			text, err = ex.ExtractText()
+			if err != nil {
+				return fmt.Errorf("page %d: %w", p, err)
 			}
+		}
+
+		if jsonOutput {
+			results = append(results, pageResult{Page: p, Text: text})
 			continue
 		}
-		text, err := ex.ExtractText()
-		if err != nil {
-			return fmt.Errorf("page %d: %w", p, err)
+		if markdown {
+			fmt.Printf("--- page %d ---\n%s", p, text)
+		} else {
+			fmt.Printf("--- page %d ---\n%s\n", p, text)
 		}
-		fmt.Printf("--- page %d ---\n%s\n", p, text)
+	}
+
+	if jsonOutput {
+		out, _ := json.Marshal(results)
+		if len(results) == 0 {
+			out = []byte("[]")
+		}
+		fmt.Println(string(out))
 	}
 	return nil
 }
@@ -350,6 +400,8 @@ func cmdReplace(args []string) error {
 	pattern := ""
 	replacement := ""
 	pagesSpec := ""
+	inPlace := false
+	jsonOutput := false
 	input := ""
 	output := ""
 
@@ -361,6 +413,10 @@ func cmdReplace(args []string) error {
 				return errors.New("--pages requires a value")
 			}
 			pagesSpec = args[i]
+		case "--in-place":
+			inPlace = true
+		case "--json":
+			jsonOutput = true
 		default:
 			if pattern == "" {
 				pattern = args[i]
@@ -373,8 +429,16 @@ func cmdReplace(args []string) error {
 			}
 		}
 	}
-	if pattern == "" || input == "" || output == "" {
-		return errors.New("usage: pdfcli replace <pattern> <replacement> [--pages N,N] <input.pdf> <output.pdf>")
+	if pattern == "" || input == "" {
+		return errors.New("usage: pdfcli replace <pattern> <replacement> [--pages N,N] [--in-place] <input.pdf> [<output.pdf>]")
+	}
+	if inPlace && input == "-" {
+		return errors.New("--in-place cannot be used with stdin input ('-')")
+	}
+	if inPlace {
+		output = input
+	} else if output == "" {
+		return errors.New("missing output: pass <output.pdf> or --in-place")
 	}
 
 	reader, f, err := readPDF(input)
@@ -400,18 +464,50 @@ func cmdReplace(args []string) error {
 	if err := editor.Replace(pattern, replacement, ps); err != nil {
 		return err
 	}
-	if err := editor.WriteToFile(output); err != nil {
+
+	if inPlace {
+		tmp, err := os.CreateTemp(filepath.Dir(input), ".pdfcli-replace-*.pdf")
+		if err != nil {
+			return fmt.Errorf("create temp: %w", err)
+		}
+		tmpName := tmp.Name()
+		_ = tmp.Close()
+		if err := editor.WriteToFile(tmpName); err != nil {
+			_ = os.Remove(tmpName)
+			return err
+		}
+		if err := os.Rename(tmpName, input); err != nil {
+			_ = os.Remove(tmpName)
+			return err
+		}
+	} else if err := editor.WriteToFile(output); err != nil {
 		return err
 	}
-	fmt.Fprintf(os.Stderr, "replaced %q → %q on %d page(s) → %s\n", pattern, replacement, len(matches), output)
+
+	if jsonOutput {
+		out, _ := json.Marshal(map[string]any{
+			"pattern":     pattern,
+			"replacement": replacement,
+			"pages":       len(matches),
+			"output":      output,
+		})
+		fmt.Println(string(out))
+	} else {
+		fmt.Fprintf(os.Stderr, "replaced %q → %q on %d page(s) → %s\n", pattern, replacement, len(matches), output)
+	}
 	return nil
 }
 
 // --- merge ------------------------------------------------------------------
 
 func cmdMerge(args []string) error {
+	jsonOutput := false
+	if len(args) > 0 && args[0] == "--json" {
+		jsonOutput = true
+		args = args[1:]
+	}
 	if len(args) < 2 {
-		return errors.New("usage: pdfcli merge <input.pdf>... <output.pdf>")
+		return errors.New("usage: pdfcli merge [--json] <input.pdf>... <output.pdf>")
 	}
 	output := args[len(args)-1]
 	inputs := args[:len(args)-1]
@@ -427,6 +523,7 @@ func cmdMerge(args []string) error {
 	model.SetPdfProducer("")
 
 	writer := model.NewPdfWriter()
+	totalPages := 0
 	for _, path := range inputs {
 		f, err := os.Open(path)
 		if err != nil {
@@ -452,6 +549,7 @@ func cmdMerge(args []string) error {
 				f.Close()
 				return fmt.Errorf("add page %d of %s: %w", i, path, err)
 			}
+			totalPages++
 		}
 		f.Close()
 	}
@@ -463,7 +561,16 @@ func cmdMerge(args []string) error {
 	if err := writer.Write(outFile); err != nil {
 		return fmt.Errorf("write %s: %w", output, err)
 	}
-	fmt.Fprintf(os.Stderr, "merged %d file(s) → %s\n", len(inputs), output)
+	if jsonOutput {
+		out, _ := json.Marshal(map[string]any{
+			"output":    output,
+			"fileCount": len(inputs),
+			"pageCount": totalPages,
+		})
+		fmt.Println(string(out))
+	} else {
+		fmt.Fprintf(os.Stderr, "merged %d file(s) → %s\n", len(inputs), output)
+	}
 	return nil
 }
 
@@ -688,10 +795,13 @@ func pdfObjectToString(obj core.PdfObject) string {
 func cmdMetadataSet(args []string) error {
 	input := ""
 	output := ""
+	jsonOutput := false
 	meta := map[string]string{}
 
 	for i := 0; i < len(args); i++ {
 		switch args[i] {
+		case "--json":
+			jsonOutput = true
 		case "--title":
 			i++
 			if i < len(args) {
@@ -781,7 +891,15 @@ func cmdMetadataSet(args []string) error {
 	if err := writer.Write(outFile); err != nil {
 		return fmt.Errorf("write %s: %w", output, err)
 	}
-	fmt.Fprintf(os.Stderr, "metadata written → %s\n", output)
+	if jsonOutput {
+		out, _ := json.Marshal(map[string]any{
+			"output":   output,
+			"metadata": meta,
+		})
+		fmt.Println(string(out))
+	} else {
+		fmt.Fprintf(os.Stderr, "metadata written → %s\n", output)
+	}
 	return nil
 }
 
